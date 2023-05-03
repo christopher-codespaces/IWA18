@@ -2,17 +2,7 @@ import { html, createOrderHtml, updateDraggingHtml,updateDraggingFunc, moveToCol
 
 let orders = []
 
-/**
- * A handler that fires when a user drags over any element inside a column. In
- * order to determine which column the user is dragging over the entire event
- * bubble path is checked with `event.path` (or `event.composedPath()` for
- * browsers that don't support `event.path`). The bubbling path is looped over
- * until an element with a `data-area` attribute is found. Once found both the
- * active dragging column is set in the `state` object in "data.js" and the HTML
- * is updated to reflect the new column.
- *
- * @param {Event} event 
- */
+
 const handleDragOver = (event) => {
     event.preventDefault();
     const path = event.path || event.composedPath()
@@ -36,23 +26,11 @@ let isOpen = false
 let sourceCol
 
 const handleDragStart = (event) => {
-    // handleDragOver(event)
-    // console.log('Drag start', event.composedPath())
-    // for (let i = 0; i < event.composedPath().length; i++){
-    //     console.log(event.composedPath()[i].dataset)
-    // }
-    // console.log(html.area)
-    // console.log(html.columns)
+    
 }
 const handleDragEnd = (event) => {
     event.preventDefault()
-    // console.log('Drag end')
-    // console.log('Source', event.srcElement)
-    // console.log('target', event)
-    // console.log(event.toElement.parentNode)
-    // console.log(html.area)
-    // const targetCol = document.querySelector(`[data-id="${event.srcElement.dataset.id}"]`)
-    // console.log(targetCol.parentNode.dataset.column)
+   )
     let elements = document.querySelectorAll(':hover');
     let column
     console.log(elements)
@@ -137,7 +115,7 @@ const handleEditSubmit = (event) => {
     formData.set('id', `${itemId}`);
     
     const data = Object.fromEntries(formData)
-    //data = {id: 'edit id', title: 'new titl', table: 'new table', column: 'new col'}
+    
 
     editedObj.querySelector('[data-order-title]').textContent = data.title
     editedObj.querySelector('[data-order-table]').textContent = data.table
@@ -169,7 +147,7 @@ const checkOverlayAndFocusBtn = (overlay) => {
     }
 }
 
-console.log('hey')
+console.log('chris')
 
 window.onload = () => html.other.add.focus()
 
@@ -193,3 +171,10 @@ for (const htmlColumn of Object.values(html.columns)) {
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
 }
+
+
+// The code defines several event handlers that respond to different user actions. The handleDragOver function handles the dragging of an order from one column to another. It determines the column the user is dragging over by looking at the event path and updating the state and HTML accordingly.
+
+// The handleDragStart and handleDragEnd functions handle the start and end of a drag operation, respectively. The handleDragEnd function moves the dragged order to the new column by finding the column the user dragged over.
+
+// The handleHelpToggle, handleAddToggle, and handleEditToggle functions handle the opening and closing of different overlays that allow users to perform different actions. The handleAddSubmit function handles the submission of a new order by creating an HTML element for the new order and adding it to the "ordered" column. The handleEditSubmit function handles the submission of an edited order by finding the order in the array of orders, updating its data, and moving it to the new column if necessary. Finally, the handleDelete function removes an order from the list of orders.
